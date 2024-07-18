@@ -1,6 +1,8 @@
 const container = document.querySelector("#container");
 const gridSizeBtn = document.querySelector(".gridSizeBtn");
 
+let isMouseDown = false;
+
 function createGrid (userGrid) {
   container.textContent = '';
   let gridSize = userGrid;
@@ -17,12 +19,23 @@ function createGrid (userGrid) {
     //rowDiv.textContent = '-r' + (j).toString();
     column.appendChild(rowDiv);
       
-      rowDiv.addEventListener("mouseover", () => {
-        rowDiv.style.backgroundColor = "red";
+        rowDiv.addEventListener("mousedown", () => {
+          isMouseDown = true;
+          rowDiv.style.backgroundColor = "red";
+        });
+  
+        rowDiv.addEventListener("mouseover", () => {
+          if (isMouseDown) {
+            rowDiv.style.backgroundColor = "red";
+          }
       });
     }
   }
 }
+
+window.addEventListener("mouseup", () => {
+  isMouseDown = false;
+});
 
 gridSizeBtn.addEventListener ("click", () => {
   console.log('button pressed');
@@ -33,18 +46,5 @@ gridSizeBtn.addEventListener ("click", () => {
       That is not a number(!) from 1-100, please input again: 
       `); 
     }
-  console.log(userInput);
   createGrid(userInput);
 });
-
-
-/*
-One thing to be careful of with this approach is when the mouse is released somewhere outside the target element. In this case you may want to include an additional mouseleave event to also remove the added listener or add mouseup to the window object so that it can detect when the mouse is released outside the target element.
-
-gridContainer.addEventListener("mousedown", () => {
-  gridContainer.addEventListener("mouseover", coloring);
-});
-window.addEventListener("mouseup", () => {
-  gridContainer.removeEventListener("mouseover", coloring);
-});
-*/
