@@ -5,7 +5,8 @@
   height: 720px;
 }
 
-main {
+.grid,
+.options {
   display: flex;
   justify-content: center;
 }
@@ -20,4 +21,16 @@ main {
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
   flex: 1;
+}
+
+button {
+  font-size: 18px;
+  margin-top: 18px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0px;
 }
