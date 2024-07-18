@@ -13,20 +13,21 @@ function createGrid (userGrid) {
     container.appendChild(column);
     
     for (let j = 0; j < gridSize; j++) {
-    const rowDiv = document.createElement("div");
-    rowDiv.textContent = '';
-    rowDiv.classList.add("rowDiv");
-    //rowDiv.textContent = '-r' + (j).toString();
-    column.appendChild(rowDiv);
+      let randomColor = randomRGB();
+      const rowDiv = document.createElement("div");
+      rowDiv.textContent = '';
+      rowDiv.classList.add("rowDiv");
+      //rowDiv.textContent = '-r' + (j).toString();
+      column.appendChild(rowDiv);
       
         rowDiv.addEventListener("mousedown", () => {
           isMouseDown = true;
-          rowDiv.style.backgroundColor = "red";
+          rowDiv.style.backgroundColor = randomColor;
         });
   
         rowDiv.addEventListener("mouseover", () => {
           if (isMouseDown) {
-            rowDiv.style.backgroundColor = "red";
+            rowDiv.style.backgroundColor = randomColor;
           }
       });
     }
@@ -48,3 +49,11 @@ gridSizeBtn.addEventListener ("click", () => {
     }
   createGrid(userInput);
 });
+
+function randColorNum() {
+  return Math.floor(Math.random() * 256);
+}
+
+function randomRGB() {
+  return `rgb(${randColorNum()},${randColorNum()},${randColorNum()})`;
+}
