@@ -1,4 +1,23 @@
 #container {
   display: flex;
   border: 2px solid;
+  width: 720px;
+  height: 720px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.columnDiv {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.rowDiv {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  flex: 1;
 }
